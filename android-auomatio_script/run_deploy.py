@@ -41,7 +41,6 @@ def install_android_sdk():
         sdkplatforms = os.getenv("ANDROID_SDK_PLATFORMS")
         sdkbuildtools = os.getenv("ANDROID_BUILD_TOOLS")
 
-        subprocess.run(f"yes | {sdkmanager} --licenses", shell=True, check=True)
         subprocess.run(
             [
                 sdkmanager,
@@ -52,6 +51,7 @@ def install_android_sdk():
             ],
             check=True,
         )
+        subprocess.run(f"yes | {sdkmanager} --licenses", shell=True, check=True)
     except subprocess.CalledProcessError as e:
         print(f"Error installing SDK packages: {e}")
         raise e
